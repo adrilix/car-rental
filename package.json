@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-08-phonebook",
+  "name": "goit-react-practice",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://adrilix.github.io/goit-react-hw-08-phonebook/",
+  "homepage": "https://adrilix.github.io/react-practice",
   "dependencies": {
     "@redux-devtools/extension": "^3.2.5",
     "@reduxjs/toolkit": "^1.9.5",
