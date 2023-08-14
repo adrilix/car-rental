@@ -1,65 +1,50 @@
-import { DivStyled, NavStyled } from './AppStyled';
 
-import { Suspense, lazy, useEffect } from 'react';
-import { LoaderSpinner } from 'components/Loader/Loader';
-import { Link, Route, Routes } from 'react-router-dom';
+import React, { Suspense, lazy } from 'react'
+import {Route, Routes } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { logOutThunk, refreshUserThunk } from 'redux/userReducers/userThunks';
-import UserMenu from 'components/UserMenu/UserMenu';
+import { LoaderSpinner } from 'components/Loader/Loader'
+import { NavLink } from 'react-router-dom/dist';
 
-const HomePage = lazy(() => import('../../Page/HomePage'));
-const LogInPage = lazy(() => import('../../Page/LogInPage'));
-const RegisterPage = lazy(() => import('../../Page/RegisterPage'));
-const ContactsPage = lazy(() => import('../../Page/ContactsPage'));
+// import HomePage from 'Page/Home/Homepage';
+// import CatalogPage from 'Page/CatalogCars/CatalogPage';
+// import FavoriteCarsPage from 'Page/FavoriteCars/FavoriteCarsPage';
 
-function App() {
-  const userData = useSelector(state => state.user.userData);
-  const token = useSelector(state => state.user.token);
-  const dispatch = useDispatch();
+const HomePage = lazy(() => import('../../Page/Home/HomePage'));
+const CatalogPage = lazy(() => import('../../Page/CatalogCars/CatalogPage'));
+const FavoriteCarsPage = lazy(() => import('../../Page/FavoriteCars/FavoriteCarsPage'));
 
-  useEffect(() => {
-    if (!token) return;
-
-    dispatch(refreshUserThunk());
-
-  }, [dispatch, token]);
-
-  const handleLogOut = () => {
-    dispatch(logOutThunk());
-  };
-
+function app() {
+    const userData = {};
   return (
-    <DivStyled>
+
+    <div>
       <header>
-        <NavStyled>
-          <Link to="/">home</Link>
+      <nav>
+          <NavLink to="/">home</NavLink>
           {userData ? (
             <>
-              <Link to="/contacts">Contacts</Link>
-              <UserMenu userName={userData.name} handleLogOut={handleLogOut} />
+                <NavLink to="/catalog">set car</NavLink>
+                <NavLink to="/favorites">Favorite cars</NavLink>
             </>
           ) : (
             <>
-              <Link to="/login">log in</Link>
-              <Link to="/registration">sign in</Link>
+              <NavLink to="/catalog">set car</NavLink>
             </>
           )}
-        </NavStyled>
+        </nav>
       </header>
       <main>
-        <Suspense fallback={<LoaderSpinner />}>
+      <Suspense fallback={<LoaderSpinner />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/contacts" element={<ContactsPage />} />
-            <Route path="/login" element={<LogInPage />} />
-            <Route path="/registration" element={<RegisterPage />}/>
+            <Route path="/catalog" element={<CatalogPage />} />
+            <Route path="/favorites" element={<FavoriteCarsPage />} />
             <Route path="*" element={<HomePage />} />
           </Routes>
         </Suspense>
       </main>
-    </DivStyled>
-  );
+    </div>
+  )
 }
 
-export default App;
+export default app

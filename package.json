@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-practice",
+  "name": "car-rental",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://adrilix.github.io/react-practice",
+  "homepage": "https://adrilix.github.io/car-rental",
   "dependencies": {
     "@redux-devtools/extension": "^3.2.5",
     "@reduxjs/toolkit": "^1.9.5",
