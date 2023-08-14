@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/738.909c946b.chunk.js","mappings":"uIAUA,UARoB,WAClB,OACEA,EAAAA,EAAAA,KAAA,SAIJ,C","sources":["Page/CatalogCars/CatalogPage.jsx"],"sourcesContent":["import React from 'react'\n\nconst CatalogPage = () => {\n  return (\n    <div>\n      \n    </div>\n  )\n}\n\nexport default CatalogPage\n"],"names":["_jsx"],"sourceRoot":""}
