@@ -21,7 +21,9 @@ const CatalogPage = () => {
 
     return (
         <div>
-
+            <carCard>
+                
+            </carCard>
         </div>
     );
 };
