@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/783.93bf9c85.chunk.js","mappings":"uIAUA,UARyB,WACvB,OACEA,EAAAA,EAAAA,KAAA,SAIJ,C","sources":["Page/FavoriteCars/FavoriteCarsPage.jsx"],"sourcesContent":["import React from 'react'\n\nconst FavoriteCarsPage = () => {\n  return (\n    <div>\n      \n    </div>\n  )\n}\n\nexport default FavoriteCarsPage\n"],"names":["_jsx"],"sourceRoot":""}
