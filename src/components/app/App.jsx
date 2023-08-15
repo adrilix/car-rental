@@ -19,6 +19,11 @@ function app() {
 
     <div>
       <header>
+        <NavLink to="/catalog">Carsharing</NavLink>
+        <div >
+            <a href="index.html">
+            </a>
+          </div>
       <nav>
           <NavLink to="/">home</NavLink>
           {userData ? (
