@@ -14,7 +14,7 @@ const CatalogPage = lazy(() => import('../../Page/CatalogCars/CatalogPage'));
 const FavoriteCarsPage = lazy(() => import('../../Page/FavoriteCars/FavoriteCarsPage'));
 
 function app() {
-    const userData = {};
+    const userData = null;
   return (
 
     <div>
