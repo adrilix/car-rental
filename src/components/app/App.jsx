@@ -4,32 +4,30 @@ import {Route, Routes } from 'react-router-dom';
 
 import { LoaderSpinner } from 'components/Loader/Loader'
 import { NavLink } from 'react-router-dom/dist';
-
-// import HomePage from 'Page/Home/Homepage';
-// import CatalogPage from 'Page/CatalogCars/CatalogPage';
-// import FavoriteCarsPage from 'Page/FavoriteCars/FavoriteCarsPage';
+import { StyledLink } from './AppStyled';
+import Form from 'components/Form/Form';
 
 const HomePage = lazy(() => import('../../Page/Home/HomePage'));
 const CatalogPage = lazy(() => import('../../Page/CatalogCars/CatalogPage'));
 const FavoriteCarsPage = lazy(() => import('../../Page/FavoriteCars/FavoriteCarsPage'));
 
 function app() {
-    const userData = null;
+    const userData = {};
   return (
 
     <div>
       <header>
         <NavLink to="/catalog">Carsharing</NavLink>
-        <div >
+          <div >
             <a href="index.html">
             </a>
           </div>
-      <nav>
-          <NavLink to="/">home</NavLink>
+        <nav>
+          <StyledLink to="/">home</StyledLink>
           {userData ? (
             <>
-                <NavLink to="/catalog">set car</NavLink>
-                <NavLink to="/favorites">Favorite cars</NavLink>
+                <StyledLink to="/catalog">set car</StyledLink>
+                <StyledLink to="/favorites">Favorite cars</StyledLink>
             </>
           ) : (
             <>
@@ -37,6 +35,7 @@ function app() {
             </>
           )}
         </nav>
+        <Form></Form>
       </header>
       <main>
       <Suspense fallback={<LoaderSpinner />}>
