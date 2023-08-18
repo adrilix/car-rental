@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export const CarItem = ({car,handleLearnMoreClick}) => {
+export const CarItem = ({car,handleLearnMoreClick, handleFavorite}) => {
     const {img,make,model,year,rentalPrice,address,rentalCompany,description,type,id,accessories}=car;
     const descrType = (description)=>{
       if (description.includes('lux')||description.includes('premium')){
@@ -13,6 +13,7 @@ export const CarItem = ({car,handleLearnMoreClick}) => {
 
   return (
     <div width = {275}>
+      <button type='button' onClick = {()=>handleFavorite(car)}>до обраних</button>
       <img alt={`${make} ${model} ${type}`} src={img} width={274}></img>
       <div>
         <b>{make}<span>{model}</span>{year}</b>

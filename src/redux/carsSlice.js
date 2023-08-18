@@ -3,11 +3,13 @@ import { getCarsThunk } from "./carsThunk";
 
 const initialState = {
     cars: [],
+    filteredCars: [],
     loading: false,
     currentPage: 1,
     perPage: 8,
     error: null,
     favorite: [],
+    formData: '',
 };
 
 const carsSlice = createSlice({
@@ -15,11 +17,31 @@ const carsSlice = createSlice({
     initialState,
     reducers: {
         addCarToFavorite: (state, action) => {
+            console.log(action.payload);
+            console.log(state.favorite);
+            console.log(state.cars);
+
             state.favorite = state.favorite.push(action.payload);
         },
         nextPage: (state, action) => {
             state.currentPage = action.payload;
-        }
+        },
+        setFindCarsInCatalog: (state, action) => {
+            state.formData = action.payload;
+
+            state.filteredCars=state.cars.filter((car)=>{
+                return(
+                    car.make.toLowerCase()===action.payload.make.toLowerCase().trim()
+                    &&Number(action.payload.rentalPrice.split('').splice(1).join(''))>=Number(car.rentalPrice.split('').splice(1).join(''))
+                    &&Number(action.payload.mileageFrom)<=car.mileage
+                    &&car.mileage<=Number(action.payload.mileageTo)
+                    )})
+        },
+
+        resetFindForm: (state, action) => {
+            state.filteredCars = action.payload;
+            state.formData = action.payload;
+        },
     },
 
 
@@ -40,5 +62,5 @@ const carsSlice = createSlice({
             })
 })
 
-export const { nextPage , addCarToFavorite} = carsSlice.actions;
+export const { nextPage , addCarToFavorite, setFindCarsInCatalog, resetFindForm} = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;

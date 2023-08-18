@@ -1,70 +1,123 @@
-import { nanoid } from '@reduxjs/toolkit';
-// import PropTypes from 'prop-types'
 import React from 'react';
+import { nanoid } from '@reduxjs/toolkit';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetFindForm } from 'redux/carsSlice';
+// import PropTypes from 'prop-types'
 
 export const Form = ({ brandToFind, coastToFind, mileageFromToFind, mileageToToFind, handleSubmit }) => {
+    const formData = useSelector(state => state.cars.formData)
+    const filteredCars = useSelector(state => state.cars.filteredCars)
+
+
+
     const carBrandInputId = nanoid();
     const PriceHourInputId = nanoid();
     const CarMileageFromInputId = nanoid();
     const CarMileageToInputId = nanoid();
+    const dispatch=useDispatch();
 
+    const [make, setMake] = useState('');
+    const [rentalPrice, setRentalPrice] = useState('');
+    const [mileageFrom, setMileageFrom] = useState([]);
+    const [mileageTo, setMileageTo] = useState([]);
 
+    const newDataForm = {make, rentalPrice, mileageFrom, mileageTo};
+
+    const handleChangeMake = evt => {
+        setMake(evt.currentTarget.value);
+    };
+
+    const handResetForm = () => {
+        setMake('');
+        setRentalPrice('');
+        setMileageFrom('');
+        setMileageTo('');
+        dispatch(resetFindForm(''))
+
+    }
+
+    const handleChangePrice = evt => {
+        setRentalPrice(evt.currentTarget.value);
+    };
+
+    const handleChangeMileageFrom = evt => {
+        setMileageFrom(evt.currentTarget.value);
+    };
+
+    const handleChangeMileageTo = evt => {
+        setMileageTo(evt.currentTarget.value);
+    };
+
+    const onSubmit = e => {
+        e.preventDefault();
+        handleSubmit(newDataForm)
+    }
     
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={onSubmit}>
             <label>
                 CarBrand
                 <input
+                    onChange={handleChangeMake}
                     autoComplete="clear on escape"
                     type="text"
                     name="carBrand"
                     id={carBrandInputId}
                     pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                     title="Name may contain only letters, apostrophe, dash and spaces. For example Citroen, BMW, LuAZ"
-                    value={brandToFind}
+                    value={make}
                     required
                 />
             </label>
             <label>
                 Price/1 hour
                 <input
+                onChange={handleChangePrice}
                     autoComplete="clear on escape"
                     type="text"
                     name="Price/1 hour"
                     id={PriceHourInputId}
-                    pattern="[0-9]*"
-                    title="number must be digits and cant contain spaces, dashes, parentheses and cant start with"
-                    value={coastToFind}
+                    value={rentalPrice}
                     required
                 />
             </label>
             <label>
                 Car mileage / km from
                 <input
+                    onChange={handleChangeMileageFrom}
                     autoComplete="clear on escape"
                     type="text"
                     name="Car mileage / km from"
                     id={CarMileageFromInputId}
                     pattern="[0-9]*"
                     title="Name may contain only letters, apostrophe, dash and spaces. For example Citroen, BMW, LuAZ"
-                    value={mileageFromToFind}
+                    value={mileageFrom}
                     required
                 />
             </label>
             <label>
             Car mileage / km to
                 <input
+                    onChange={handleChangeMileageTo}
                     autoComplete="clear on escape"
                     type="text"
                     name="Car mileage / km to"
                     id={CarMileageToInputId}
                     pattern="[0-9]*"
                     title="Name may contain only letters, apostrophe, dash and spaces. For example Citroen, BMW, LuAZ"
-                    value={mileageToToFind}
+                    value={mileageTo}
                     required
                 />
             </label>
             <button type="submit">Search</button>
+            {formData && formData!==''
+            &&<button type="button" onClick={handResetForm}>clear dataForm</button>
+            }
+            {formData!==''&&filteredCars.length===0
+            && alert("❓no cars at your request. Please specify your request☝")
+            }
+
         </form>
     );
 };

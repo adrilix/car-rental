@@ -17,13 +17,14 @@ import {
   const carsPersistConfig = {
     key: 'cars',
     storage,
-    whitelist: ['favorite','currentPage']
+    whitelist: [
+        // 'favorite',
+        ]
   }
   
   export const store = configureStore({
     reducer: {
       cars: persistReducer (carsPersistConfig, carsReducer),
-    //   findCar: findCar,
   },
   
   middleware: (getDefaultMiddleware) =>

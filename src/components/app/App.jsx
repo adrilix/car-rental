@@ -1,17 +1,33 @@
 
 import React, { Suspense, lazy } from 'react'
-import {Route, Routes } from 'react-router-dom';
+import {Route, Routes, useLocation } from 'react-router-dom';
 
 import { LoaderSpinner } from 'components/Loader/Loader'
 import { NavLink } from 'react-router-dom/dist';
 import { StyledLink } from './AppStyled';
 import Form from 'components/Form/Form';
+import { useDispatch } from 'react-redux';
+
+import {setFindCarsInCatalog} from 'redux/carsSlice';
 
 const HomePage = lazy(() => import('../../Page/Home/HomePage'));
 const CatalogPage = lazy(() => import('../../Page/CatalogCars/CatalogPage'));
 const FavoriteCarsPage = lazy(() => import('../../Page/FavoriteCars/FavoriteCarsPage'));
 
-function app() {
+function App() {
+  
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  const handleSubmit = ({make, rentalPrice, mileageFrom, mileageTo}) =>{
+    const dataToFindCars = {
+      make,
+      rentalPrice,
+      mileageFrom,
+      mileageTo ,
+    };
+    dispatch(setFindCarsInCatalog(dataToFindCars));
+}
     const userData = {};
   return (
 
@@ -35,7 +51,9 @@ function app() {
             </>
           )}
         </nav>
-        <Form></Form>
+        {location.pathname!=="/" &&
+         <Form handleSubmit={handleSubmit}></Form>}
+        
       </header>
       <main>
       <Suspense fallback={<LoaderSpinner />}>
@@ -51,4 +69,4 @@ function app() {
   )
 }
 
-export default app
+export default App;
