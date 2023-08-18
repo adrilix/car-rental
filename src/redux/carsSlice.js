@@ -17,18 +17,13 @@ const carsSlice = createSlice({
     initialState,
     reducers: {
         addCarToFavorite: (state, action) => {
-            console.log(action.payload);
-            console.log(state.favorite);
-            console.log(state.cars);
-
-            state.favorite = state.favorite.push(action.payload);
+            state.favorite = [...state.favorite, action.payload];
         },
         nextPage: (state, action) => {
             state.currentPage = action.payload;
         },
         setFindCarsInCatalog: (state, action) => {
             state.formData = action.payload;
-
             state.filteredCars=state.cars.filter((car)=>{
                 return(
                     car.make.toLowerCase()===action.payload.make.toLowerCase().trim()

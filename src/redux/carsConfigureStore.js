@@ -18,7 +18,7 @@ import {
     key: 'cars',
     storage,
     whitelist: [
-        // 'favorite',
+        'favorite',
         ]
   }
   
