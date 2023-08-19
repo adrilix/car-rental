@@ -13,7 +13,13 @@ export const CarItem = ({car,handleLearnMoreClick, handleFavorite}) => {
 
   return (
     <div width = {275}>
-      <button type='button' onClick = {()=>handleFavorite(car)}>до обраних</button>
+      {2>1?(
+        <button type='button' onClick = {()=>handleFavorite(car)}>до обраних</button>
+      )
+      :(
+        <button type='button' onClick = {()=>handleFavorite(car)}>прибрати з обраних</button>
+      )}
+      
       <img alt={`${make} ${model} ${type}`} src={img} width={274}></img>
       <div>
         <b>{make}<span>{model}</span>{year}</b>

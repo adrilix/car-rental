@@ -6,7 +6,7 @@ import { LoaderSpinner } from 'components/Loader/Loader'
 import { NavLink } from 'react-router-dom/dist';
 import { StyledLink } from './AppStyled';
 import Form from 'components/Form/Form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {setFindCarsInCatalog} from 'redux/carsSlice';
 
@@ -15,7 +15,7 @@ const CatalogPage = lazy(() => import('../../Page/CatalogCars/CatalogPage'));
 const FavoriteCarsPage = lazy(() => import('../../Page/FavoriteCars/FavoriteCarsPage'));
 
 function App() {
-  
+
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -28,7 +28,8 @@ function App() {
     };
     dispatch(setFindCarsInCatalog(dataToFindCars));
 }
-    const userData = {};
+    const favoriteCars = useSelector(state=>state.cars.favorite);
+
   return (
 
     <div>
@@ -39,8 +40,8 @@ function App() {
             </a>
           </div>
         <nav>
-          <StyledLink to="/">home</StyledLink>
-          {userData ? (
+          <StyledLink to="/">home</StyledLink> 
+          {favoriteCars.length > 0 ? (
             <>
                 <StyledLink to="/catalog">set car</StyledLink>
                 <StyledLink to="/favorites">Favorite cars</StyledLink>

@@ -12,6 +12,16 @@ const CatalogPage = () => {
     const filteredCars = useSelector(state => state.cars.filteredCars);
     const currentPage = useSelector(state => state.cars.currentPage);
     const perPage = useSelector(state => state.cars.perPage);
+    // const favoriteCars = useSelector(state => state.cars.favorite);
+
+    // const favoriteId = favoriteCars => 
+    //     favoriteCars.reduce((allId,id)=>{
+    //         allId.push(id);
+    //         return allId;
+    //     },[]);
+    // console.log(favoriteId());  
+    
+    
 
     useEffect(() => {
         if (cars && cars.length > 0) return;
@@ -36,9 +46,12 @@ const CatalogPage = () => {
     };
 
     const handleFavorite = (car) => {
+        console.log('car: ', car);
+
         dispatch(addCarToFavorite(car));
         console.log('add to favorite', car);
     }
+
     const handleLearnMoreClick = () => {
         console.log('click для відкриття модалки');
     };
