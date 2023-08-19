@@ -55,12 +55,11 @@ export const Form = ({ brandToFind, coastToFind, mileageFromToFind, mileageToToF
     }
     
     return (
-        <form onSubmit={onSubmit}>
+        <form autoComplete="off"onSubmit={onSubmit}>
             <label>
                 CarBrand
                 <input
-                    onChange={handleChangeMake}
-                    autoComplete="clear on escape"
+                    onChange={handleChangeMake}                    
                     type="text"
                     name="carBrand"
                     id={carBrandInputId}
