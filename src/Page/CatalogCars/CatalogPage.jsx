@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import CarsList from 'components/CarsList/CarsList';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCarsThunk } from 'redux/carsThunk';
-import { addCarToFavorite, nextPage } from 'redux/carsSlice';
+import { addCarToFavorite, nextPage, removeCarOnFavorite } from 'redux/carsSlice';
 
 const CatalogPage = () => {
     const dispatch = useDispatch();
@@ -12,16 +12,13 @@ const CatalogPage = () => {
     const filteredCars = useSelector(state => state.cars.filteredCars);
     const currentPage = useSelector(state => state.cars.currentPage);
     const perPage = useSelector(state => state.cars.perPage);
-    // const favoriteCars = useSelector(state => state.cars.favorite);
+    const favoriteCars = useSelector(state => state.cars.favorite);
 
-    // const favoriteId = favoriteCars => 
-    //     favoriteCars.reduce((allId,id)=>{
-    //         allId.push(id);
-    //         return allId;
-    //     },[]);
-    // console.log(favoriteId());  
-    
-    
+      const favoriteIds = favoriteCars.reduce((allId, car) => {
+        allId.push(car.id);      
+        return allId;
+      }, []);
+
 
     useEffect(() => {
         if (cars && cars.length > 0) return;
@@ -52,6 +49,13 @@ const CatalogPage = () => {
         console.log('add to favorite', car);
     }
 
+    const handleRemoveFavorite = (id) => {
+        console.log('id: ', id);
+
+        dispatch(removeCarOnFavorite(id));
+        console.log('remove on favorite', id);
+    }
+
     const handleLearnMoreClick = () => {
         console.log('click для відкриття модалки');
     };
@@ -65,6 +69,8 @@ const CatalogPage = () => {
                         loading={loading}
                         handleLearnMoreClick={handleLearnMoreClick}
                         handleFavorite={handleFavorite}
+                        handleRemoveFavorite={handleRemoveFavorite}
+                        favoriteIds={favoriteIds}
                     />
                 ) : (
                     <CarsList
@@ -72,6 +78,8 @@ const CatalogPage = () => {
                         loading={loading}
                         handleLearnMoreClick={handleLearnMoreClick}
                         handleFavorite={handleFavorite}
+                        handleRemoveOnFavorite={handleRemoveFavorite}
+                        favoriteIds={favoriteIds}
                     />
                 )}
             </div>

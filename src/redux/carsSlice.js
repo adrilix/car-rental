@@ -19,6 +19,11 @@ const carsSlice = createSlice({
         addCarToFavorite: (state, action) => {
             state.favorite = [...state.favorite, action.payload];
         },
+        removeCarOnFavorite: (state, action) => {
+            state.favorite=state.favorite.filter(
+                car => car.id !== action.payload);
+                
+        },
         nextPage: (state, action) => {
             state.currentPage = action.payload;
         },
@@ -57,5 +62,5 @@ const carsSlice = createSlice({
             })
 })
 
-export const { nextPage , addCarToFavorite, setFindCarsInCatalog, resetFindForm} = carsSlice.actions;
+export const { nextPage , addCarToFavorite, setFindCarsInCatalog, resetFindForm,removeCarOnFavorite} = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;

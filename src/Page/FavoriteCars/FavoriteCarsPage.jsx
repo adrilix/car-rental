@@ -2,7 +2,7 @@ import CarsList from 'components/CarsList/CarsList';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCarToFavorite, nextPage } from 'redux/carsSlice';
+import { addCarToFavorite, nextPage, removeCarOnFavorite } from 'redux/carsSlice';
 import { getCarsThunk } from 'redux/carsThunk';
 
 const FavoriteCarsPage = () => {
@@ -38,9 +38,20 @@ const handleFavorite = (car) => {
     dispatch(addCarToFavorite(car));
     console.log('add to favorite', car);
 }
+const handleRemoveFavorite = (id) => {
+  console.log('id: ', id);
+
+  dispatch(removeCarOnFavorite(id));
+  console.log('remove on favorite', id);
+}
 const handleLearnMoreClick = () => {
     console.log('click для відкриття модалки');
 };
+
+const favoriteIds = favoriteCars.reduce((allId, car) => {
+  allId.push(car.id);      
+  return allId;
+}, []);
 
   return (
     <>
@@ -51,6 +62,8 @@ const handleLearnMoreClick = () => {
                     loading={loading}
                     handleLearnMoreClick={handleLearnMoreClick}
                     handleFavorite={handleFavorite}
+                    handleRemoveFavorite={handleRemoveFavorite}
+                    favoriteIds={favoriteIds}
                 />
             ) : (
                 <CarsList
@@ -58,6 +71,8 @@ const handleLearnMoreClick = () => {
                     loading={loading}
                     handleLearnMoreClick={handleLearnMoreClick}
                     handleFavorite={handleFavorite}
+                    handleRemoveFavorite={handleRemoveFavorite}
+                    favoriteIds={favoriteIds}
                 />
             )}
         </div>
