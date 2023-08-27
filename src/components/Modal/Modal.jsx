@@ -1,11 +1,19 @@
-import React from 'react'
+import React from 'react';
 
-function Modal() {
+function Modal(active, setActive, car) {
+  const {
+    img,
+    make,
+    model,
+    // ,year,rentalPrice,address,rentalCompany,description,type,id,accessories
+  } = car;
   return (
     <div>
-      Modal window
+      <svg />
+      <img src={img} alt={`Car to rent ${make} ${model}`} />
+      <button>Try call</button>
     </div>
-  )
+  );
 }
 
-export default Modal
+export default Modal;
