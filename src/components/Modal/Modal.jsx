@@ -33,7 +33,7 @@ function Modal(active, setActive, car) {
       </div>
       <div>{`${address}|${rentalCompany}|${descrType(description)}`}</div>
       <div>{`${type}|${make}|${id}|${accessories[1]}`}</div>
-      <button>Try call</button>
+      <button>Rental car</button>
     </div>
   );
 }
