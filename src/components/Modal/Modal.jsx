@@ -14,11 +14,7 @@ function Modal(active, setActive, car) {
     id,
     accessories,
   } = car;
-  const descrType = description => {
-    if (description.includes('lux') || description.includes('premium')) {
-      return 'Premium';
-    } else return '';
-  };
+
   return (
     <div>
       <svg />
@@ -31,7 +27,7 @@ function Modal(active, setActive, car) {
         </b>
         <b>{rentalPrice}</b>
       </div>
-      <div>{`${address}|${rentalCompany}|${descrType(description)}`}</div>
+      <div>{`${address}|${rentalCompany}|${description}`}</div>
       <div>{`${type}|${make}|${id}|${accessories[1]}`}</div>
       <button>Rental car</button>
     </div>
