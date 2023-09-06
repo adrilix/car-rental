@@ -60,9 +60,7 @@ const CatalogPage = () => {
   };
 
   const handleLearnMoreClick = () => {
-    console.log(
-      'click для відкриття модалки, яку я скоро пропишу сто відсотків, просто зараз не хочу, але можу...пізніше'
-    );
+    console.log('click для відкриття модалки');
   };
 
   return (
