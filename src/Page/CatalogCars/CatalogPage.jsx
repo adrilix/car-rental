@@ -60,7 +60,7 @@ const CatalogPage = () => {
   };
 
   const handleLearnMoreClick = () => {
-    console.log('click - відкриття модалки');
+    console.log('click - open modal');
   };
 
   return (
