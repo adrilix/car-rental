@@ -53,10 +53,10 @@ const CatalogPage = () => {
   };
 
   const handleRemoveFavorite = id => {
-    console.log('idd: ', id);
+    console.log('iiidd : ', id);
 
     dispatch(removeCarOnFavorite(id));
-    console.log('remove on favorite', id);
+    console.log('remove on favorite one', id);
   };
 
   const handleLearnMoreClick = () => {
