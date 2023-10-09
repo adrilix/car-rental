@@ -2,7 +2,11 @@ import CarsList from 'components/CarsList/CarsList';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCarToFavorite, nextPage, removeCarOnFavorite } from 'redux/carsSlice';
+import {
+  addCarToFavorite,
+  nextPage,
+  removeCarOnFavorite,
+} from 'redux/carsSlice';
 import { getCarsThunk } from 'redux/carsThunk';
 
 const FavoriteCarsPage = () => {
@@ -32,74 +36,73 @@ const FavoriteCarsPage = () => {
   const handleClickLoadMore = () => {
     dispatch(nextPage(currentPage + 1));
     console.log('load more');
-};
+  };
 
-const handleFavorite = (car) => {
+  const handleFavorite = car => {
     dispatch(addCarToFavorite(car));
-    console.log('add to favorite', car);
-}
-const handleRemoveFavorite = (id) => {
-  console.log('id: ', id);
+    console.log('add to favorite list', car);
+  };
+  const handleRemoveFavorite = id => {
+    console.log('id: ', id);
 
-  dispatch(removeCarOnFavorite(id));
-  console.log('remove on favorite', id);
-}
-const handleLearnMoreClick = () => {
+    dispatch(removeCarOnFavorite(id));
+    console.log('remove on favorite', id);
+  };
+  const handleLearnMoreClick = () => {
     console.log('click для відкриття модалки');
-};
+  };
 
-const favoriteIds = favoriteCars.reduce((allId, car) => {
-  allId.push(car.id);      
-  return allId;
-}, []);
+  const favoriteIds = favoriteCars.reduce((allId, car) => {
+    allId.push(car.id);
+    return allId;
+  }, []);
 
   return (
     <>
-        <div>
-            {filteredCars.length===0 && formData==='' ? (
-                <CarsList
-                    cars={currentCarsOnPage}
-                    loading={loading}
-                    handleLearnMoreClick={handleLearnMoreClick}
-                    handleFavorite={handleFavorite}
-                    handleRemoveFavorite={handleRemoveFavorite}
-                    favoriteIds={favoriteIds}
-                />
-            ) : (
-                <CarsList
-                    cars={currentFilteredCarsOnPage}
-                    loading={loading}
-                    handleLearnMoreClick={handleLearnMoreClick}
-                    handleFavorite={handleFavorite}
-                    handleRemoveFavorite={handleRemoveFavorite}
-                    favoriteIds={favoriteIds}
-                />
-            )}
-        </div>
-        {filteredCars.length === 0 && formData==='' ? (
-            favoriteCars.length > currentCarsOnPage.length ? (
-                <button type="button" onClick={handleClickLoadMore}>
-                    Load more
-                </button>
-            ) : (
-                <>
-                    <button disabled>Load more</button>
-                    <p>this is all cars to review</p>
-                </>
-            )
-        ) : filteredCars.length > currentCarsOnPage.length ? (
-            <button type="button" onClick={handleClickLoadMore}>
-                Load more
-            </button>
+      <div>
+        {filteredCars.length === 0 && formData === '' ? (
+          <CarsList
+            cars={currentCarsOnPage}
+            loading={loading}
+            handleLearnMoreClick={handleLearnMoreClick}
+            handleFavorite={handleFavorite}
+            handleRemoveFavorite={handleRemoveFavorite}
+            favoriteIds={favoriteIds}
+          />
         ) : (
-            <>
-                <button disabled>Load more</button>
-                <p>this is all cars to review</p>
-            </>
+          <CarsList
+            cars={currentFilteredCarsOnPage}
+            loading={loading}
+            handleLearnMoreClick={handleLearnMoreClick}
+            handleFavorite={handleFavorite}
+            handleRemoveFavorite={handleRemoveFavorite}
+            favoriteIds={favoriteIds}
+          />
         )}
+      </div>
+      {filteredCars.length === 0 && formData === '' ? (
+        favoriteCars.length > currentCarsOnPage.length ? (
+          <button type="button" onClick={handleClickLoadMore}>
+            Load more
+          </button>
+        ) : (
+          <>
+            <button disabled>Load more</button>
+            <p>this is all cars to review</p>
+          </>
+        )
+      ) : filteredCars.length > currentCarsOnPage.length ? (
+        <button type="button" onClick={handleClickLoadMore}>
+          Load more
+        </button>
+      ) : (
+        <>
+          <button disabled>Load more</button>
+          <p>this is all cars to review</p>
+        </>
+      )}
     </>
-);
+  );
 };
-
 
 export default FavoriteCarsPage;
