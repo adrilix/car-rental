@@ -35,7 +35,7 @@ const FavoriteCarsPage = () => {
   );
   const handleClickLoadMore = () => {
     dispatch(nextPage(currentPage + 1));
-    console.log('load more');
+    console.log('load more now');
   };
 
   const handleFavorite = car => {
