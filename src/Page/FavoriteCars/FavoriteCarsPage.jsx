@@ -40,7 +40,7 @@ const FavoriteCarsPage = () => {
 
   const handleFavorite = car => {
     dispatch(addCarToFavorite(car));
-    console.log('add to favorite list', car);
+    console.log('add to favorite carlist', car);
   };
   const handleRemoveFavorite = id => {
     console.log('id: ', id);
