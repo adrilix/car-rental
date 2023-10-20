@@ -46,7 +46,7 @@ const FavoriteCarsPage = () => {
     console.log('id: ', id);
 
     dispatch(removeCarOnFavorite(id));
-    console.log('remove on favorite carslist', id);
+    console.log('remove on favorite', id);
   };
   const handleLearnMoreClick = () => {
     console.log('click - модалки');
