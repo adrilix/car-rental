@@ -49,7 +49,7 @@ const FavoriteCarsPage = () => {
     console.log('delete on favorite', id);
   };
   const handleLearnMoreClick = () => {
-    console.log('click - відкриття модалки');
+    console.log('click - відкр. мод-ки');
   };
 
   const favoriteIds = favoriteCars.reduce((allId, car) => {
