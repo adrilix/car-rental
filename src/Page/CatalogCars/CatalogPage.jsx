@@ -53,7 +53,7 @@ const CatalogPage = () => {
   };
 
   const handleRemoveFavorite = id => {
-    console.log('id this car: ', id);
+    console.log('id this car on: ', id);
 
     dispatch(removeCarOnFavorite(id));
     console.log('remove on favorite', id);
