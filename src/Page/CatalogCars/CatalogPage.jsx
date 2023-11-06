@@ -38,7 +38,7 @@ const CatalogPage = () => {
     firstCarCurrentPageIndex,
     lastCarCurrentPageIndex
   );
-  console.log('currentCarsOnPage: ', currentCarsOnPage);
+  console.log(' this is currentCarsOnPage: ', currentCarsOnPage);
 
   const handleClickLoadMore = () => {
     dispatch(nextPage(currentPage + 1));
