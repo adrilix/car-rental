@@ -46,7 +46,7 @@ const CatalogPage = () => {
   };
 
   const handleFavorite = car => {
-    console.log('car: ', car);
+    console.log('your car: ', car);
 
     dispatch(addCarToFavorite(car));
     console.log('add to super favorite', car);
