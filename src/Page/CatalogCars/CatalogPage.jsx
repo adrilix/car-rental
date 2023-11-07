@@ -49,7 +49,7 @@ const CatalogPage = () => {
     console.log('your car: ', car);
 
     dispatch(addCarToFavorite(car));
-    console.log('add to super favorite', car);
+    console.log('add to favorite', car);
   };
 
   const handleRemoveFavorite = id => {
