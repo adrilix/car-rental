@@ -56,7 +56,7 @@ const CatalogPage = () => {
     console.log('id your car: ', id);
 
     dispatch(removeCarOnFavorite(id));
-    console.log('remove on favorite', id);
+    console.log('remove on your favorite', id);
   };
 
   const handleLearnMoreClick = () => {
