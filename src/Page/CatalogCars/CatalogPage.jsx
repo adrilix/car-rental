@@ -42,7 +42,7 @@ const CatalogPage = () => {
 
   const handleClickLoadMore = () => {
     dispatch(nextPage(currentPage + 1));
-    console.log('load more cars');
+    console.log('load more');
   };
 
   const handleFavorite = car => {
