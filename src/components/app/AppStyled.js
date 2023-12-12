@@ -5,6 +5,6 @@ export const StyledLink = styled(NavLink)`
   color: green;
 
   &.active {
-    color: orange;
+    color: greenyellow;
   }
 `;
