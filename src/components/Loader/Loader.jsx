@@ -4,8 +4,8 @@ export const LoaderSpinner = () => {
   return (
     <Blocks
       visible={true}
-      height="50"
-      width="50"
+      height="60"
+      width="60"
       ariaLabel="blocks-loading"
       wrapperStyle={{}}
       wrapperClass="blocks-wrapper"
